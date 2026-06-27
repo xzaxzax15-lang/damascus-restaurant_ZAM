@@ -2,7 +2,15 @@
 import React, { useState } from 'react';
 import { menuItems } from '../data/menuData';
 import { useCart } from '../context/CartContext';
-import { ShoppingBag, Phone, MapPin, Clock, Star, Trash2, Check, Flame } from 'lucide-react';
+import {
+  ShoppingBag,
+  Phone,
+  MapPin,
+  Clock,
+  Star,
+  Trash2,
+  Flame
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LuxuryRestaurantHome() {
@@ -82,24 +90,26 @@ export default function LuxuryRestaurantHome() {
 
         {/* Categories Tab Filters */}
         <div className="flex justify-center gap-2 mb-10 overflow-x-auto pb-2">
-          {['all', 'bbq', 'appetizers', 'pastries'].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat as any)}
-              className={`px-5 py-2 rounded-full font-bold text-sm whitespace-nowrap transition-all ${
-                activeCategory === cat 
-                  ? 'bg-[#A40000] text-white border border-[#D4AF37]' 
-                  : 'bg-[#141414] text-gray-400 hover:text-white'
-              }`}
-            >
-              {cat === 'all' && 'كل الأصناف'}
-              {cat === 'bbq' && '🔥 المشويات'}
-              {cat === 'appetizers' && '🥣 المقبلات'}
-              {cat === 'pastries' && '🍕 المعجنات الشامية'}
-            </button>
-          ))}
-        </div>
-
+          
+           {(
+  ['all', 'bbq', 'appetizers', 'pastries'] as const
+).map((cat) => (
+  <button
+    key={cat}
+    onClick={() => setActiveCategory(cat)}
+    className={`px-5 py-2 rounded-full font-bold text-sm whitespace-nowrap transition-all ${
+      activeCategory === cat
+        ? 'bg-[#A40000] text-white border border-[#D4AF37]'
+        : 'bg-[#141414] text-gray-400 hover:text-white'
+    }`}
+  >
+    {cat === 'all' && 'كل الأصناف'}
+    {cat === 'bbq' && '🔥 المشويات'}
+    {cat === 'appetizers' && '🥣 المقبلات'}
+    {cat === 'pastries' && '🍕 المعجنات الشامية'}
+  </button>
+))}
+</div>
         {/* Menu Items Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {filteredMenu.map((item) => (
